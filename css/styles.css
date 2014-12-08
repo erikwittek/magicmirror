@@ -1,7 +1,19 @@
-.fc td {
-	border: none;
+/* Typography 
+h1 {
+	font-size: 5vh;
+}*/
+
+/* Placement */
+.top-right {
+	text-align: right;
 }
 
-.fc th {
-	border: none;
+/* Colors */
+body {
+	color: white;
+	background-color: black;
+}
+
+h1 small {
+	color: #D3D3D3;
 }

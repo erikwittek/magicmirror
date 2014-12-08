@@ -18,16 +18,23 @@
     <div class="row">
       <div class="col-md-3">
         <div ng-controller="TimeCtrl">
-          <h1>{{ clock  | date:'HH:mm:ss'}}</br><small>{{ clock | date:'EEEE, d. MMM yyyy' }}</small></h1>
+          <h1>
+            <small>{{ clock | date:'EEEE, d. MMM yyyy' }}</small>
+            </br>
+            {{ clock  | date:'HH:mm:ss'}}
+          </h1>
         </div>
         <div ng-controller="CalendarCtrl">
             <h2> {{ events }} </h2>
         </div>
       </div>
-      <div class="col-md-3 col-md-offset-6">
+      <div class="col-md-3 col-md-offset-6 top-right">
         <div ng-controller="WeatherCtrl">
-          <p><i class="wi wi-sunrise"></i> {{ weather.sys.sunrise }} </p>
-          <h1> {{ weather.weather[0].description }} </h1>
+          <h1>
+            <small><i class="wi wi-sunrise"></i> {{ sunrise | date: 'H:m' }} <i class="wi wi-sunset"></i> {{ sunset | date: 'H:m' }} </small>
+            </br>
+            <i class="wi" ng-class="icon"></i> {{ temp }} °C
+          </h1>
         </div>
       </div>
     </div>
