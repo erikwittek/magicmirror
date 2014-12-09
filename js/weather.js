@@ -1,10 +1,6 @@
 magic_mirror.controller('WeatherCtrl', ['$scope', '$timeout', '$http',
 function WeatherCtrl($scope, $timeout, $http) {
-	$scope.weather = "loading forecast..."; // initialise the time variable
-	$scope.sunrise = "";
-	$scope.sunset = "";
-  $scope.temp = "";
-  $scope.icon = "";
+	var weather = "loading forecast..."; // initialise the time variable
   $scope.tickInterval = 300000 //ms
 
   var iconTable = {
@@ -32,17 +28,28 @@ function WeatherCtrl($scope, $timeout, $http) {
 		$http.get('http://api.openweathermap.org/data/2.5/weather?q=Nuremberg,de&units=metric&lang=de').
 		success(function(data, status, headers, config) {
 				console.log(data);
-				$scope.weather = angular.fromJson(data);
+				weather = angular.fromJson(data);
 
-				$scope.sunrise = $scope.weather.sys.sunrise * 1000;
-				$scope.sunset = $scope.weather.sys.sunset * 1000;
-				$scope.temp = $scope.weather.main.temp;
+				$scope.sunrise = weather.sys.sunrise * 1000;
+				$scope.sunset = weather.sys.sunset * 1000;
+				$scope.temp = weather.main.temp;
 
-				$scope.icon = iconTable[$scope.weather.weather[0].icon];
+				$scope.icon = iconTable[weather.weather[0].icon];
 		}).
 		error(function(data, status, headers, config) {
-				$scope.weather = "Uuhps";
+				weather = "Uuhps";
 		});
+
+		$http.get('http://api.openweathermap.org/data/2.5/forecast?q=Nuremberg,de&units=metric&lang=de').
+		success(function(data, status, headers, config) {
+				console.log(data);
+				$scope.forecast = angular.fromJson(data);
+		}).
+		error(function(data, status, headers, config) {
+				weather = "Uuhps";
+		});
+		
+
 		$timeout(tick, $scope.tickInterval); // reset the timer
 	};
 
