@@ -8,6 +8,14 @@ h1 {
 	text-align: right;
 }
 
+.top-right table {
+	float: right;
+}
+
+.top-right td {
+	padding-left: 10px;
+}
+
 /* Colors */
 body {
 	color: white;

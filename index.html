@@ -37,7 +37,7 @@
           </h1>
           <table>  
               <tr ng-repeat="item in forecast.list | limitTo: 5">
-                <td>{{ item.dt * 1000 | date: 'd.M. HH:mm' }}:</td>
+                <td>{{ item.dt * 1000 | date: 'HH:mm' }}:</td>
                 <td>{{ item.weather[0].description }}</td>
                 <td>{{ item.main.temp | number: 2}} °C </td>
               </tr>
